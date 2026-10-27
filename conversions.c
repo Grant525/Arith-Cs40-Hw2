@@ -1,18 +1,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "assert.h"
 #include "compress40.h"
-#include "Uarray2.c"
-#include <math.h>
+#include "uarray2.h"
 
 struct RGB quanitze_RGB(double r, double g, double b, int denominator);
 
-struct pixmap_float {
-            double y;
-            double pb;
-            double pr;
-        }
 //create_float_pixmap()?
 UarrayT pixmap_new = Uarray2_new(width, height, sizeof(pixmap->pixel))
 for (int row_num, row_num < height, row_num++){
@@ -22,7 +17,7 @@ for (int row_num, row_num < height, row_num++){
         }
 }
 //Convert_to_components() added as well
-UArray2_T Convert_to_float(UarrayT pixmap_new, pnm_ppm pixmap){
+void Convert_to_float(UarrayT pixmap_new, pnm_ppm pixmap){
         
         int width = methods->width(pixmap)  
         int height = methods->height(pixmap)  
@@ -45,7 +40,7 @@ UArray2_T Convert_to_float(UarrayT pixmap_new, pnm_ppm pixmap){
         return pixmap_new
 }
 
-UArray2_T Convert_to_RGB(UarrayT pixmap_new, UarrayT pixmap){
+void Convert_to_RGB(UarrayT pixmap_new, UarrayT pixmap){
         int width = methods->width(pixmap)  
         int height = methods->height(pixmap)  
         
@@ -71,7 +66,6 @@ UArray2_T Convert_to_RGB(UarrayT pixmap_new, UarrayT pixmap){
                     pixmap_new->at(col_num, row_num)->green = data.green;
                 }
         }
-        return pixmap_new
 }
 
 struct RGB quanitze_RGB(double r, double g, double b, int denominator){

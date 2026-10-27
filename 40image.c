@@ -7,6 +7,7 @@
 
 static void (*compress_or_decompress)(FILE *input) = compress40;
 
+
 int main(int argc, char *argv[])
 {
         int i;
@@ -41,8 +42,6 @@ int main(int argc, char *argv[])
 
         return EXIT_SUCCESS; 
 }
-
-
 
 
 

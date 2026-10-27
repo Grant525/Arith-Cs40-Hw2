@@ -13,7 +13,7 @@ Pnm_ppm read_ppm(FILE *input) {
     return pixmap;
 }
 
-Pnm_ppm trim(Pnm_ppm pixmap) {
+A2Methods_UArray2 trim(Pnm_ppm pixmap) {
     int width = pixmap->width;
     int height = pixmap->height;
     int new_height;
@@ -80,4 +80,25 @@ A2Methods_UArray2 read_codewords(FILE *input, unsigned width, unsigned height) {
     return words;
 }
 
+Pnm_ppm create_pixmap(unsigned width, unsigned height) {
+    A2Methods_T methods = uarray2_methods_plain;
 
+    A2Methods_UArray2 pixels = methods->new(width, height, sizeof(struct Pnm_rgb));
+    assert(pixels != NULL);
+    Pnm_ppm pixmap = malloc(sizeof(*pixmap));
+    assert(pixmap != NULL);
+
+    pixmap->width = width;
+    pixmap->height = height;
+    pixmap->denominator = DENOMINATOR;
+    pixmap->pixels = pixels;
+    pixmap->methods = methods;
+
+    return pixmap;
+}
+
+
+void write_stdout(Pnm_ppm pixmap) {
+    assert(pixmap != NULL);
+    Pnm_ppmwrite(stdout, pixmap);
+}
