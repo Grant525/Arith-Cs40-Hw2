@@ -1,0 +1,71 @@
+/**************************************************************
+ *
+ *                     README
+ *
+ *        Assignment: CS 40 HW 4, Arith
+ *        Authors:    Micheal Gonzales (mgonza20),
+ *                    Grant Caile (gcaile01)
+ *        Date:       October 28, 2026
+ *
+ **************************************************************/
+
+Acknowledgements
+----------------
+TAs Olivia and Hannah
+
+Architecture
+------------
+40image.c       Provided main. Parses -c / -d and an optional filename,
+                then calls compress40 or decompress40.
+
+compress40.c    Implements compress40.h. Ties the steps together:
+                  compress:   read PPM -> trim to even size -> convert
+                              to component video -> pack each 2x2
+                              block into a codeword -> write
+                  decompress: read header -> read codewords -> unpack
+                              each codeword into 4 pixels -> write PPM
+
+images.c/.h     All image I/O. Reads PPMs and trims odd rows/columns;
+                reads and writes the compressed header; reads and
+                writes 32-bit codewords in big-endian order; creates
+                the output pixmap (denominator 255).
+
+conversions.c/.h
+                Color-space conversion. RGB (scaled integers) to
+                floating-point Y/Pb/Pr for compression, and Y/Pb/Pr
+                back to RGB (clamped to [0, 1], then scaled) for
+                decompression.
+
+block.c/.h      2x2 block handling. chroma_conversion is mapped over a
+                blocked array (blocksize 2) so it sees the four pixels
+                of each block in a row; it averages Pb and Pr, runs the
+                DCT, and hands the block to pack_codeword. Also holds
+                the inverse DCT.
+
+codeword.c/.h   Knows the codeword layout. Quantizes a (9 bits
+                unsigned), b, c, d (5 bits signed, clamped to +/-0.3),
+                and the chroma indices (4 bits each), and
+                packs/unpacks them with Bitpack.
+
+bitpack.c       Implements bitpack.h: fitsu/fitss, getu/gets,
+                newu/news, and the Bitpack_Overflow exception.
+
+uarray2.c/.h, uarray2b.c/.h, a2plain.c, a2blocked.c
+                2D array and blocked 2D array implementations and their
+                A2Methods suites, reused from the locality assignment.
+
+ppmdiff.c       Testing tool. Prints the root mean square difference
+                between two PPM images. Built with "make ppmdiff".
+
+
+What has been implemented
+-------------------------
+To our knowledge, everything in the specification has been implemented
+correctly, including both compression and decompression and the full
+Bitpack interface.
+
+
+Hours spent
+-----------
+Analyzing the problem:  8 hours
+Solving the problem:  15 hours

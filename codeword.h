@@ -1,3 +1,17 @@
+/**************************************************************
+ *
+ *                     codeword.h
+ *
+ *        Assignment: CS 40 HW 4, Arith
+ *        Authors:    Micheal Gonzales (mgonza20),
+ *                    Grant Caile (gcaile01)
+ *        Date:       October 28, 2026
+ *
+ *        Interface for packing a 2x2 block into a 32-bit codeword
+ *        during compression, and unpacking codewords back into
+ *        pixels during decompression.
+ *
+ **************************************************************/
 #ifndef CODEWORD_H
 #define CODEWORD_H
 

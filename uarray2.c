@@ -3,7 +3,7 @@
  *        File Name: uarray2.c
  * 
  *        Assignmnet: iii
- *        Authors: Thee Thakong (tthako01) and Grant Caile (gcaile01)
+ *        Authors: Micheal Gonzales (mgonza20) and Grant Caile (gcaile01)
  *        Due Date: October 1st, 2026
  * 
  *        Summary:

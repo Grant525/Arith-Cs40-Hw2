@@ -3,7 +3,7 @@
  *                     uarray2b.c
  *
  *        Assignment: CS 40 HW 3, Locality
- *        Authors:    Theetat Thakong (tthako01),
+ *        Authors:    Micheal Gonzales (mgonza20),
  *                    Grant Caile (gcaile01)
  *        Date:       October 14, 2026
  *

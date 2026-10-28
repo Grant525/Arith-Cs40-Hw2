@@ -1,3 +1,17 @@
+/**************************************************************
+ *
+ *                     images.h
+ *
+ *        Assignment: CS 40 HW 4, Arith
+ *        Authors:    Micheal Gonzales (mgonza20),
+ *                    Grant Caile (gcaile01)
+ *        Date:       October 28, 2026
+ *
+ *        Interface for image input and output: reading and trimming
+ *        PPM images, reading and writing the compressed-image header
+ *        and codewords, and writing a decompressed PPM to stdout.
+ *
+ **************************************************************/
 #ifndef IMAGES_H
 #define IMAGES_H
 
@@ -25,4 +39,3 @@ void write_header(unsigned width, unsigned height);
 void write_stdout(Pnm_ppm pixmap);
 
 #endif
-
