@@ -5,23 +5,9 @@
 #include "compress40.h"
 #include "uarray2.h"
 #include <stdint.h>
-
-
-struct pixmap_block {
-    int count;
-    struct pixmap_float pa[4];
-    double cos_coef[4];
-    double pb_sum;
-    double pr_sum;
-};
-
-struct pixmap_block_d {
-    int count;
-    struct pixmap_float pa[4];
-    double y[4];
-    double pb_sum;
-    double pr_sum;
-};
+#include "block.h"
+#include "codeword.h"
+#include "images.h"
 
 void DCT(double y1, double y2, double y3, double y4, void *cl) {
         struct pixmap_block *block = cl;
@@ -40,8 +26,7 @@ void chroma_conversion(int col, int row, A2Methods_UArray2 pixmap, void *elem, v
             block->pb_sum = block->pa[0].pb + block->pa[1].pb + block->pa[2].pb + block->pa[3].pb;
             block->pr_sum = block->pa[0].pr + block->pa[1].pr + block->pa[2].pr + block->pa[3].pr;
             DCT(block->pa[0].y,block->pa[1].y,block->pa[2].y,block->pa[3].y, cl);
-            uint64_t codeword = pack_codeword(cl);
-            write_codeword(codeword);
+            pack_codeword(cl);
             block->count = 0;
         }
 }
@@ -54,4 +39,3 @@ void inv_DCT(double a, double b, double c, double d, void *cl){
         block->y[3] = a + b + c + d;
 }
 
-//create_float_pixmap() 

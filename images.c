@@ -5,6 +5,7 @@
 #include "assert.h"
 #include "images.h"
 #include "a2plain.h"
+#include "bitpack.h"
 
 Pnm_ppm read_ppm(FILE *input) {
     A2Methods_T methods = uarray2_methods_plain; 
@@ -12,8 +13,7 @@ Pnm_ppm read_ppm(FILE *input) {
     assert(pixmap != NULL);
     return pixmap;
 }
-//needs to return a pnm_ppm, this is a pixmap, because its a struct with
-//all the correct components
+
 Pnm_ppm trim(Pnm_ppm pixmap) {
     int width = pixmap->width;
     int height = pixmap->height;
@@ -98,6 +98,19 @@ Pnm_ppm create_pixmap(unsigned width, unsigned height) {
     return pixmap;
 }
 
+
+void write_codeword(uint64_t codeword)
+{
+        for (int lsb = 24; lsb >= 0; lsb -= 8) {
+                putchar(Bitpack_getu(codeword, 8, lsb));
+        }
+}
+
+void write_header(unsigned width, unsigned height)
+{
+        printf("COMP40 Compressed image format 2\n%u %u", width, height);
+        putchar('\n');
+}
 
 void write_stdout(Pnm_ppm pixmap) {
     assert(pixmap != NULL);
