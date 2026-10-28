@@ -5,7 +5,7 @@
 #include "except.h"
 #include "assert.h"
 
-Except_T Bitpack_Overflow = { "Overflow packing bits" };
+const Except_T Bitpack_Overflow = { "Overflow packing bits" };
 
 //to implement
 bool Bitpack_fitsu(uint64_t n, unsigned width) {

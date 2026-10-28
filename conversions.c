@@ -30,7 +30,7 @@ for (int row_num, row_num < height, row_num++){
 void Convert_to_float(A2Methods_UArray2 pixmap_new, Pnm_ppm pixmap, A2Methods_T methods) {
         int width = pixmap->width; 
         int height = pixmap->height;
-        A2Methods_T old_methods = pixmap->methods;
+        const struct A2Methods_T *old_methods = pixmap->methods;
         
         for (int row_num = 0; row_num < height; row_num++) {
                 for (int col_num = 0; col_num < width; col_num++) {

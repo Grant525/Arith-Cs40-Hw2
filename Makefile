@@ -13,17 +13,15 @@ INCLUDES = $(shell echo *.h)
 all: 40image
 
 
-## Compile step (.c files -> .o files)
-
-# To get *any* .o file, compile its .c file with the following rule.
 %.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
-## Linking step (.o -> executable program)
+40image: 40image.o compress40.o images.o conversions.o block.o codeword.o bitpack.o \
+         a2plain.o a2blocked.o uarray2.o uarray2b.o
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
-40image: 40image.o compress40.o images.o conversions.o block.o codeword.o \
-         bitpack.o
+ppmdiff: ppmdiff.o a2plain.o uarray2.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 a2test: a2test.o uarray2b.o uarray2.o a2plain.o
@@ -36,4 +34,4 @@ ppmtrans: ppmtrans.o cputiming.o a2plain.o a2blocked.o uarray2b.o uarray2.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 clean:
-	rm -f ppmtrans a2test timing_test *.o
+	rm -f 40image ppmdiff ppmtrans a2test timing_test *.o
