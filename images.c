@@ -12,8 +12,9 @@ Pnm_ppm read_ppm(FILE *input) {
     assert(pixmap != NULL);
     return pixmap;
 }
-
-A2Methods_UArray2 trim(Pnm_ppm pixmap) {
+//needs to return a pnm_ppm, this is a pixmap, because its a struct with
+//all the correct components
+Pnm_ppm trim(Pnm_ppm pixmap) {
     int width = pixmap->width;
     int height = pixmap->height;
     int new_height;

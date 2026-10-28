@@ -9,7 +9,7 @@
 void compress40(FILE *input) {
     A2Methods_T methods = uarray2_methods_blocked;
     Pnm_ppm pixmap = read_ppm(input);
-    A2Methods_T pixmap = trim(input);
+    pixmap = trim(input);
     A2Methods_T pixmap_new = create_float_pixmap(width, height, etc)
     Convert_to_float(*pixmap_new, pixmap)
     methods->map(chroma_conversion(pixmap_new, (int col, int row, A2Methods_T pixmap, void *elem, void *cl), void *cl))

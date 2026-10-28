@@ -1,5 +1,5 @@
 #ifndef CONVERSIONS_H
-#define CONVERSEIONS_H
+#define CONVERSIONS_H
 
 #include <pnm.h>
 #include <a2methods.h>
@@ -15,9 +15,9 @@ struct RGB {
     unsigned green;
     unsigned blue;
 };
-//didnt finish but i started this file
-//compression
-A2Methods_UArray2 create_float_pixmap(unsigned width, unsigned height);
+
+A2Methods_UArray2 create_float_pixmap(unsigned width, unsigned height,
+                                      A2Methods_T methods);
 void Convert_to_float(A2Methods_UArray2 floats, Pnm_ppm pixmap);
 
 //decompressions

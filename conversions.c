@@ -3,12 +3,22 @@
 #include <stdio.h>
 #include <math.h>
 #include "assert.h"
+#include "pnm.h"
+#include "a2methods.h"
+#include "conversions.h"
 #include "compress40.h"
 #include "uarray2.h"
 
 struct RGB quanitze_RGB(double r, double g, double b, int denominator);
 
-//create_float_pixmap()?
+A2Methods_UArray2 create_float_pixmap(unsigned width, unsigned height, 
+        A2Methods_T methods) {
+        A2Methods_UArray2 pixmap_new = methods->new(width, height, 
+                sizeof(struct pixmap_float));
+        return pixmap_new;
+}
+
+/* what you had
 UarrayT pixmap_new = Uarray2_new(width, height, sizeof(pixmap->pixel))
 for (int row_num, row_num < height, row_num++){
         for (int col_num, col_num < width, col_num++){
@@ -16,28 +26,35 @@ for (int row_num, row_num < height, row_num++){
                 *(struct pixmap_float *)methods->at(pixmap_new, col_num, row_num) = pf;
         }
 }
-//Convert_to_components() added as well
-void Convert_to_float(UarrayT pixmap_new, pnm_ppm pixmap){
-        
-        int width = methods->width(pixmap)  
-        int height = methods->height(pixmap)  
-        
-        for (int row_num, row_num < height, row_num++){
-                for (int col_num, col_num < width, col_num++){
-                    int r = pixmap->at(col_num, row_num)->red
-                    int b = pixmap->at(col_num, row_num)->blue
-                    int g = pixmap->at(col_num, row_num)->green
+*/
 
-                    double y = 0.299 * r + 0.587 * g + 0.114 * b;
-                    double pb = -0.168736 * r - 0.331264 * g + 0.5 * b;
-                    double pr = 0.5 * r - 0.418688 * g - 0.081312 * b; 
-                    
-                    pixmap_new->at(col_num, row_num)->y = y;
-                    pixmap_new->at(col_num, row_num)->pb = pb;
-                    pixmap_new->at(col_num, row_num)-> pr = pr;
+//Convert_to_components() added as well
+void Convert_to_float(A2Methods_UArray2 pixmap_new, Pnm_ppm pixmap) { // it is 2d array, i changed variable
+        A2Methods_T methods = pixmap->methods;
+        int width = pixmap->width; //readability no parenthesis needed
+        int height = pixmap->height;
+        
+        for (int row_num = 0; row_num < height; row_num++) {
+                for (int col_num = 0; col_num < width; col_num++) {//loop logic was wrong
+                        struct Pnm_rgb *rgb = methods->at(pixmap->pixels, 
+                                col_num, row_num);
+                        double r = (double)rgb->red / pixmap->denominator; // formula expect 0 to 1 so i divided 
+                        double b = (double)rgb->blue / pixmap->denominator; // these needed to be double
+                        double g = (double)rgb->green / pixmap->denominator;
+                        
+                        double y = 0.299 * r + 0.587 * g + 0.114 * b;
+                        double pb = -0.168736 * r - 0.331264 * g + 0.5 * b;
+                        double pr = 0.5 * r - 0.418688 * g - 0.081312 * b; 
+                        
+                        struct pixmap_float *pf = methods->at(pixmap_new, 
+                                col_num, row_num); //about to convert it to float through methods
+                    pf->y = y;
+                    pf->pb = pb;
+                    pf->pr = pr;
                 }
         }
-        return pixmap_new
+        //this is a void function so we dont return anything, we are just converting 
+        //the one we already made
 }
 
 void Convert_to_RGB(UarrayT pixmap_new, UarrayT pixmap){
