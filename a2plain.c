@@ -3,7 +3,7 @@
  *                     a2plain.c
  *
  *        Assignment: CS 40 HW 3, Locality
- *        Authors:    Micheal Gonzales (mgonza20),
+ *        Authors:    Michael Gonzales (mgonza20),
  *                    Grant Caile (gcaile01)
  *        Date:       October 14, 2026
  * 
@@ -86,9 +86,6 @@ static A2Methods_UArray2 new(int width, int height, int size)
 static A2Methods_UArray2 new_with_blocksize(int width, int height, int size,
                                             int blocksize)
 {
-        /* TODO:
-         * Implement this function and remove the dummy return statement.
-         */
         (void) blocksize;
         return UArray2_new(width, height, size);
 }

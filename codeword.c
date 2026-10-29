@@ -3,7 +3,7 @@
  *                     codeword.c
  *
  *        Assignment: CS 40 HW 4, Arith
- *        Authors:    Micheal Gonzales (mgonza20),
+ *        Authors:    Michael Gonzales (mgonza20),
  *                    Grant Caile (gcaile01)
  *        Date:       October 28, 2026
  *
@@ -42,11 +42,6 @@ struct quant_abcd {
         int q_b;
         int q_c;
         int q_d;
-};
-
-/* Dequantized DCT coefficients of one block */
-struct dequant_abcd {
-        double a, b, c, d;
 };
 
 /********** clamp ********
@@ -123,25 +118,6 @@ void pack_codeword(void *cl)
         code_word = Bitpack_newu(code_word, 4, 4, four_bit_pb);
         code_word = Bitpack_newu(code_word, 4, 0, four_bit_pr);
         write_codeword(code_word);
-}
-
-/********** dequantize ********
- *
- * Converts quantized DCT coefficients back to floating point
- *
- * Parameters:
- *        struct quant_abcd q: the quantized coefficients
- *
- * Return: a divided by 511, and b, c, d divided by 50
- ************************/
-struct dequant_abcd dequantize(struct quant_abcd q)
-{
-        struct dequant_abcd f;
-        f.a = q.q_a / 511.0;
-        f.b = q.q_b / 50.0;
-        f.c = q.q_c / 50.0;
-        f.d = q.q_d / 50.0;
-        return f;
 }
 
 /********** unpack_word ********

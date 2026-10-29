@@ -3,7 +3,7 @@
  *        File Name: uarray2b.h
  *
  *        Assignment: CS 40 HW 3, Locality
- *        Authors: Micheal Gonzales (mgonza20) and Grant Caile (gcaile01)
+ *        Authors: Michael Gonzales (mgonza20) and Grant Caile (gcaile01)
  *        Date: October 14, 2026
  *
  *        Summary:

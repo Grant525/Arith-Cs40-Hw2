@@ -3,7 +3,7 @@
  *                     block.h
  *
  *        Assignment: CS 40 HW 4, Arith
- *        Authors:    Micheal Gonzales (mgonza20),
+ *        Authors:    Michael Gonzales (mgonza20),
  *                    Grant Caile (gcaile01)
  *        Date:       October 28, 2026
  *

@@ -3,7 +3,7 @@
  *                     conversions.c
  *
  *        Assignment: CS 40 HW 4, Arith
- *        Authors:    Micheal Gonzales (mgonza20),
+ *        Authors:    Michael Gonzales (mgonza20),
  *                    Grant Caile (gcaile01)
  *        Date:       October 28, 2026
  *
@@ -50,18 +50,6 @@ A2Methods_UArray2 create_float_pixmap(unsigned width, unsigned height,
                 width, height, sizeof(struct pixmap_float), 2);
         return pixmap_new;
 }
-
-/* what you had
-UarrayT pixmap_new = Uarray2_new(width, height, sizeof(pixmap->pixel))
-for (int row_num, row_num < height, row_num++){
-        for (int col_num, col_num < width, col_num++){
-                struct pixmap_float pf;
-                *(struct pixmap_float *)methods->at(pixmap_new, col_num, row_num) = pf;
-        }
-}
-*/
-
-/* Convert_to_components() added as well */
 
 /********** Convert_to_float ********
  *

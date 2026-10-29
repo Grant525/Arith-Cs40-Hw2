@@ -3,7 +3,7 @@
  *        File Name: uarray2.h
  *
  *        Assignment: iii
- *        Authors: Micheal Gonzales (mgonza20) and Grant Caile (gcaile01)
+ *        Authors: Michael Gonzales (mgonza20) and Grant Caile (gcaile01)
  *        Due Date: October 1st, 2026
  *
  *        Summary:
